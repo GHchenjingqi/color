@@ -1,0 +1,11 @@
+{
+  "name": "chinacolor",
+  "version": "1.0.0",
+  "description": "中国色，颜色名转十六进制",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
