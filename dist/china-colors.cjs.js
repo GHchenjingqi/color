@@ -2781,6 +2781,10 @@ var Color = class extends fn_default {
 		super();
 		this.children = colors_default;
 	}
+	randomChinaColor() {
+		let indx = Math.floor(Math.random() * this.children.length);
+		return this.children[indx].hex;
+	}
 };
 var src_default = Color;
 

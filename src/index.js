@@ -6,5 +6,9 @@ class Color extends colorHandle {
     super();
     this.children = colors;
   }
+  randomChinaColor() { 
+    let indx = Math.floor(Math.random() * this.children.length);
+    return this.children[indx].hex;
+  }
 }
 export default Color;
