@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 { text-align: center; }
+        .item {  width: 100px; margin: 10px; font-size: 12px; display: inline-block; }
+        .color { width: 100%; height: 24px; line-height: 24px;  text-align: center; cursor: pointer;}
+        .br {  margin-bottom: 20px; display: inline-block; height: 20px; border-bottom: 1px dashed black; width: 100%;}
+        p { margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    <h1>中国传统色</h1>
+    <div class="wrap"></div>
+    <script src="./dist/china-colors.min.js"></script>
+    <script>
+        const color = new ChinaColors()
+        const hongs = color.children.filter(item => item.name.endsWith('红'))
+        const huangs = color.children.filter(item => item.name.endsWith('黄'))
+        const lvs = color.children.filter(item => item.name.endsWith('绿'))
+        const lans = color.children.filter(item => item.name.endsWith('蓝'))
+        const qings = color.children.filter(item => item.name.endsWith('青'))
+        const huis = color.children.filter(item => item.name.endsWith('灰'))
+        const bais = color.children.filter(item => item.name.endsWith('白'))
+        const color_arr = [hongs, huangs, lvs, lans, qings, huis, bais]
+
+        const wrap = document.querySelector('.wrap')
+        function creatDiv(arrs) {
+            for (let i = 0; i < arrs.length; i++) {
+                const item = arrs[i]
+                const div = document.createElement('div')
+                div.className = 'item'
+                div.innerHTML = `
+                    <div class="color" style="background:${item.hex}">${item.hex}</div>
+                    <p>${item.name}</p>
+                `
+                div.querySelector('.color').addEventListener('click', copy);
+                wrap.appendChild(div)
+            }
+        }
+        function copy(e) {
+            const text = e.currentTarget.innerText
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text)
+                .then(() => {
+                    alert('复制成功: ' + text)
+                })
+                .catch(err => console.error('复制失败:', err));
+            } else {
+                const input = document.createElement('input')
+                input.value = text
+                input.style.display = 'none'
+                document.body.appendChild(input)
+                input.select()
+                document.execCommand('copy')
+                document.body.removeChild(input)
+                alert('复制成功: ' + text)
+            }
+        }
+
+        for (let index = 0; index < color_arr.length; index++) {
+            const element = color_arr[index];
+            creatDiv(element)
+            const div = document.createElement('div')
+            div.className = 'br'
+            wrap.appendChild(div)
+        }
+    </script>
+</body>
+
+</html>

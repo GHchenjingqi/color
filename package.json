@@ -1,11 +1,15 @@
 {
   "name": "chinacolor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "中国色，颜色名转十六进制",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "build": "rolldown --config rolldown.config.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "rolldown": "^1.0.0-beta.29"
+  }
 }
